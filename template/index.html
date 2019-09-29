@@ -1,0 +1,29 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Transparent Login Page</title>
+	<link rel="stylesheet" type="text/css" href="{% static '/css/style.css'%}">
+</head>
+<body>
+	<div class="login-box">
+		{%if user.is_authenticated%}
+      		<h1 class="w3-text-teal">{{request.user}}</h1>
+      	{%endif%}
+		<img src="/media/abc.jpg" class="abc"> 
+		<h1>Login Here</h1>
+		<form method="post">{% csrf_token %}
+			<p>Username</p>
+			<input type="text" name="username" placeholder="Enter Username">
+			<p>Password</p>
+			<input type="Password" name="password" placeholder="Enter Password">
+			<input type="submit" name="submit" value="Login">
+			<a href="/otp/">Forget Password</a></br>
+			<a href="/register/">Don't have Account</a>
+		</form>
+
+</div>
+<a href=""></a>
+</body>
+</html>

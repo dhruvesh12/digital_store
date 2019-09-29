@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sending SMS</title>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+	
+<h1 class="text-center">Sending OTP SMS</h1>
+<hr>
+	<div class="row">
+		<div class="col-sm-9 col-md-offset-2">
+			<?php
+		if(isset($_POST['sendotp'])){
+						require('textloacl.class.php');
+						requrire('credentil.php')
+
+						$textlocal=new textlocal(false,false, API_KEY);
+
+						$numbers=array($_POST[MOBILE]);
+						$sender='tXTLCL';
+						$otp=mt_rand();
+						$message="hello". $_POST ["username"]."this is your otp:".$otp;
+
+						 try
+						 {
+						 	$result=$textlocal->sendSms($numbers, $message, $sender);
+			setcookie('otp',$otp);
+						 echo"OTP SUCCESSFULLY SEND....";
+						 }
+						 catch(Exception $e)
+						 {
+						 	die('Error: '. $e- >getMessage());
+						 }
+						}
+if(isset($_POST['verify'])){
+	$otp=$_POST['otpcode'];
+	if($_cookie['otpcode]==$otp'){
+	echo"Congratulation";
+}else
+{
+	echo"Please entry corect otp.";
+}
+}
+ ?>
+		</div>
+		<div class="col-md-9 col-md-offset-2">
+			<form role="form" method="post" enctype="multipart/form-data">
+				<div class="row">
+					<div class="col-sm-9 form-group">
+						<label for="usename">Name</label>
+						<input type="text"class="form-control" id="username"  name="username" value="" maxlength="10" placeholder="Enter your name" required="">
+				    </div>
+			    </div>
+			    <div class="row">
+					<div class="col-sm-9 form-group">
+						<label for="mobile">mobile</label>
+						<input type="text"class="form-control" id="mobile"  name="mobile" value="" maxlength="10" placeholder="Enter your mobile number" required="">
+				    </div>
+			    </div>
+			    <div class="row">
+					<div class="col-sm-9 form-group">
+						<button type="submit" name="sendotp" class="btn btn-lg btn-success btn-block">Send OTP</button>	
+					 </div>
+			    </div>
+			    <div class="row">
+					<div class="col-sm-9 form-group">
+						<label for="otpcode">OTP Code</label>
+						<input type="text" class="form-control" id="otpcode"  name="otpcode" value="" maxlength="10" placeholder="Enter your OTP" required="">
+				    </div>
+			    </div>
+			    <div class="row">
+					<div class="col-sm-9 form-group">
+						<button type="submit" name="Verify" class="btn btn-lg btn-success btn-block">Verify</button>	
+					 </div>
+			    </div>
+			</form>
+		</div>
+		
+	</div>
+
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+*.pyc
+*~
+__pycache__
+myvenv
+db.sqlite3
+
+.DS_Store
+New folder
+Contact.zip
+udemy.rar
+website Requirement.docx
+mozilla.pdf
+media
+static

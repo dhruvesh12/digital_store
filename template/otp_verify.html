@@ -1,0 +1,24 @@
+{% extends 'otp.html' %}
+
+
+{%block content%}
+
+
+<form action="" method="POST">{% csrf_token %}
+<div id="text"> 
+	    <div class="row">
+			<div class="col-sm-9 form-group">
+				<label for="otpcode">OTP Code</label>
+				<input type="text" class="form-control" id="otpcode"  name="otpcode" value="" maxlength="10" placeholder="Enter your OTP" required="">
+		    </div>
+	    </div></br>
+
+	    <div class="row">
+			<div class="col-sm-9 form-group">
+				<button type="submit" name="verify" class="btn btn-lg btn-success btn-block";class="btn">verify</button>
+			
+			</div>
+	    </div></br>
+</div>
+</form>	
+{%endblock%}
